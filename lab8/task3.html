@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style.css">
+    <title>Regular expression</title>
+    <script src="https://kit.fontawesome.com/5654e812fa.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <header>
+        <a href="./index.html" class='back'><i class="fas fa-angle-left"></i></a>
+    </header>
+    <div class="wrap">
+        <div class="container">
+            <h2 class="container__title"> Data formatter </h2>
+            <form action="#" class="container__form" onsubmit="return false;">
+                <div class="wrapper">
+                    <input type="text" id="date" class="wrapper__input" required/>
+                    <label for="date" class="wrapper__label"> Input date mm/dd/yyyy </label>
+                </div>
+                <div class="wrapper">
+                    <input type="text" id="output" class="wrapper__input" required readonly/>
+                </div>
+                
+                <button class="container__button" onclick='handleClickSecond();'>
+                    <i class="fas fa-check"></i>
+                    Convert
+                </button>
+            </form>
+        </div>
+</div>
+
+   <script>
+     const handleClickSecond = ( )  => {
+        const data = document.getElementById('date');
+        const outputWrapper = document.querySelector('.hide');
+        const output = document.getElementById('output');
+        console.log(output);    
+        const text = data.value;
+        const button = document.querySelector('.container__button');
+        const title = document.querySelector('.container__title');
+        const reg = new RegExp(/^([0-1]{1}[0-2]{1})\/?\-?\.?([0-3]{1}[0-9]{1})\/?\-?\.?([2]{1}[0-9]{3})$/);
+        const date = reg.exec(text);
+        console.log(date);
+        if (!!date){
+            if(date[2]<32){
+            title.textContent = 'Get your formatted date';
+            // outputWrapper.classList.toggle('hide');
+            output.value = `${date[2]}.${date[1]}.${date[3]}`;    
+            }
+        }
+        else {
+            title.classList.add('error');
+            title.textContent = 'Wrong date!';
+            data.classList.add('shake');
+            data.classList.add('error');
+            button.style.display = 'none';
+            setTimeout(()=>{
+                data.classList.remove('shake');
+                data.classList.remove('error'); 
+                title.classList.remove('error');
+                title.textContent = 'Data formatter'
+                button.style.display = 'block';
+                data.value='';
+            }
+            ,1000)
+         }
+}
+   </script>
+</body>

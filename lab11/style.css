@@ -1,0 +1,135 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,400;0,700;1,400&display=swap');
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+}
+
+:root {
+    font-family: 'Noto Sans', sans-serif;
+    font-size: 16px;
+    --main: #292939;
+    --second: #ED6767;
+    --bg: #F2F2E6;
+}
+
+.container {
+    position: relative;
+    margin: 0 auto;
+    max-width: 90%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    padding: .6rem;
+    align-self: center;
+}
+
+.wrapper__title {
+    text-align: center;
+    font-size: 3rem;
+    font-style: normal;
+    font-weight: 700;
+    color: var(--main);
+    letter-spacing: .2rem;
+    margin-bottom: .9rem;
+}
+
+.wrapper__menu {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem;
+    border: .1rem solid var(--main);
+    border-radius: .4rem;
+    background-color: var(--bg);
+    box-shadow: .1rem .2rem .5rem .2rem var(--main);
+}
+
+.link {
+    position: relative;
+    text-align: center;
+    text-decoration: none;
+    font-size: 1.3rem;
+    font-weight: 900;
+    color: var(--main);
+    padding: .3rem;
+}
+
+.link::after {
+    content: '';
+    position: absolute;
+    width: 0%;
+    bottom: 0;
+    left: 0;
+    height: 2px;
+    background-color: var(--second);
+    transition: all .4s;
+}
+
+.link:hover::after {
+    width: 100%;
+}
+
+
+/* table style */
+
+.table_price {
+    border-collapse: collapse;
+    border-left: .2rem solid var(--main);
+    border-right: .2rem solid var(--main);
+    border-bottom: .2rem solid var(--main);
+}
+
+.table_price caption {
+    background: var(--main);
+    border-top-left-radius: .8rem;
+    border-top-right-radius: .8rem;
+    padding: .7rem;
+    box-shadow: 0 .2rem .3rem 0 rgba(0, 0, 0, .3);
+    color: var(--bg);
+    font-style: bold;
+    font-size: 1.5rem;
+    text-align: center;
+}
+
+.table_price td,
+.table_price th {
+    padding: 1rem;
+}
+
+.table_price th {
+    text-align: center;
+    font-size: 1.2rem;
+}
+
+.table_price tr:nth-child(2n) {
+    background: var(--second);
+}
+
+.table_price td:last-of-type {
+    text-align: center;
+}
+
+.class {
+    font-weight: 500;
+}
+
+.rating {
+    font-style: italic;
+}
+
+.price {
+    text-align: center;
+}

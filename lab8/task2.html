@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style.css">
+    <title>Regular expression</title>
+    <script src="https://kit.fontawesome.com/5654e812fa.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <header>
+        <a href="./index.html" class='back'><i class="fas fa-angle-left"></i></a>
+    </header>
+    <div class="wrap">
+        <div class="container">
+            <h2 class="container__title"> Check wheather </h2>
+            <form action="#" class="container__form" onsubmit="return false;">
+                <div class="wrapper">
+                    <input type="text" id="number" class="wrapper__input" required/>
+                    <label for="number" class="wrapper__label"> Temperature </label>
+                </div>
+                <button class="container__button" onclick='handleClickSecond();'>
+                    <i class="fas fa-check"></i>
+                    Check
+                </button>
+            </form>
+        </div>
+</div>
+
+   <script>
+     const handleClickSecond = ( )  => {
+        const data = document.getElementById('number');
+        const text = data.value;
+        const button = document.querySelector('.container__button');
+        const title = document.querySelector('.container__title');
+        const reg = new RegExp(/^(\+|-)?\d{1,2}$/);
+        console.log(reg.exec(text));
+        if (!reg.exec(text)){
+            title.classList.add('error');
+            title.textContent = 'Wrong temperature!';
+            data.classList.add('shake');
+            data.classList.add('error');
+            button.style.display = 'none';
+            setTimeout(()=>{
+                data.classList.remove('shake');
+                data.classList.remove('error'); 
+                title.classList.remove('error');
+                title.textContent = 'Check temperature'
+                button.style.display = 'block';
+                data.value='';
+            }
+            ,1000)
+        }
+        else {
+            title.classList.add('pass');
+            title.textContent = 'It\'s Ok!';
+            data.classList.add('pass');
+            button.style.display = 'none';
+            setTimeout(()=>{
+                data.classList.remove('pass'); 
+                title.classList.remove('pass');
+                title.textContent = 'Check number'
+                button.style.display = 'block';
+                data.value='';
+            }
+            ,1000)
+        }
+}
+   </script>
+</body>

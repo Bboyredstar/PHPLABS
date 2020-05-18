@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://kit.fontawesome.com/5654e812fa.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <header>
+        <a href="./index.html" class='back'><i class="fas fa-angle-left"></i></a>
+    </header>
+    <div class="wrap">
+        <div class="container">
+            <h2 class="container__title"> Login form </h2>
+            <form action="#" class="container__form" onsubmit="return false;">
+                <div class="wrapper">
+                    <input type="text" id="username" class="wrapper__input" required/>
+                    <label for="username" class="wrapper__label"> Username </label>
+                </div>
+                <p class="error-message"></p>
+                <div class="wrapper">
+                    <div class="eye">
+                        <i class="fas fa-eye" id='show'></i>
+                    </div>
+                    <input type="password" id="password" class="wrapper__input" required ></input>
+                    <label for="password" class="wrapper__label"> Password </label>
+                </div>
+                <p class="error-message"></p>
+                <button class="container__button" onclick='handleClick();'>
+                    <i class="fas fa-check"></i>
+                    Login
+                </button>
+            </form>
+        </div>
+    </div>
+    <script>
+        const title  = document.querySelector('.container__title');
+        const pass = document.getElementById('password');
+        const username = document.getElementById('username');
+        const show = document.getElementById('show');
+        const error = document.querySelectorAll('.error-message');
+        let correctPass = false;
+        let correctUsername = false;
+        let timeout = null;
+        
+        show.addEventListener('click',()=>{
+            if (pass.type === 'password'){
+                pass.type = 'text';
+            }
+            else{
+                pass.type = 'password';
+            }
+        });
+
+        const userReg = /^user_[A-Z0-9]{4}$/;
+        const passReg =  /^[a-z]{4,}$/
+        const validatePassword = (password) =>{
+            if (password.length < 4){
+                showError('Your password must be least 4 characters long.','pass');
+            }
+            else if(!passReg.test(password)){
+                showError('Your password must include only lowercase characters.','pass');
+            }
+            else{
+                showError('','pass');
+                correctPass = true; 
+            }
+        }
+        const validateUsername = (username) =>{
+            if(!userReg.test(username)){
+                showError('Your username must have format user_XXXX and include only uppercase letters of numbers','username');
+            }
+            else{
+                showError('','username');
+                correctUsername = true; 
+            }
+        }
+
+        const handleClick = ()=>{
+            if(correctPass &  correctUsername){
+                title.classList.add('pass');
+                title.textContent = 'Welcome!';
+                pass.value = '';
+                username.value = '';
+                correctPass,correctUsername =false;
+                clearTimeout(timeout);
+                timeout = setTimeout(()=>{
+                    title.textContent = 'Login form';
+                    title.classList.remove('pass');
+                },500)
+                
+            }
+           else{
+                title.classList.add('error');
+                title.textContent = 'Invalid fields!';
+                pass.classList.add('error');
+                pass.classList.add('shake');
+                username.classList.add('error');
+                username.classList.add('shake');
+                clearTimeout(timeout);
+                timeout = setTimeout(()=>{
+                    pass.classList.toggle('error');
+                    pass.classList.toggle('shake');
+                    username.classList.toggle('error');
+                    username.classList.toggle('shake');
+                    title.textContent = 'Login form';
+                    title.classList.remove('error');
+                },500)
+            }
+           
+        };
+        const showError = (message,type) =>{
+           switch(type){
+                case 'pass':
+                    error[1].textContent = message;
+                    break;
+                case 'username':
+                    error[0].textContent = message;
+                    break;
+           }
+        }
+        pass.addEventListener('keyup',e=>{
+            const password = e.target.value;
+            clearTimeout(timeout);
+            timeout = setTimeout(()=> validatePassword(password),300);
+        })
+        username.addEventListener('keyup',e=>{
+            const username = e.target.value;
+            clearTimeout(timeout);
+            timeout = setTimeout(()=> validateUsername(username),300);
+        })
+    </script>
+</body>
+</html>

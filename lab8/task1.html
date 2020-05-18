@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style.css">
+    <title>Regular expression</title>
+    <script src="https://kit.fontawesome.com/5654e812fa.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <header>
+        <a href="./index.html" class='back'><i class="fas fa-angle-left"></i></a>
+    </header>
+    <div class="wrap">
+        <div class="container">
+            <h2 class="container__title"> Check number </h2>
+            <form action="#" class="container__form" onsubmit="return false;">
+                <div class="wrapper">
+                    <input type="text" id="number" class="wrapper__input" required/>
+                    <label for="number" class="wrapper__label"> Number </label>
+                </div>
+                <button class="container__button" onclick="handleClick();">
+                    <i class="fas fa-check"></i>
+                    Check
+                </button>
+            </form>
+            <span class='separator' id='separator'>
+                <i class="fas fa-angle-down"></i> 
+            </span>
+        </div>
+    
+        <div class="container row ">
+            <button class='container__option'>12</button>
+            <button class='container__option'>+ 12</button>
+            <button class='container__option'>-12</button>
+            <button class='container__option'>1-2</button>
+            <button class='container__option'>1-2-3</button>
+            <button class='container__option'>a1</button>
+            <button class='container__option'>12w3</button>
+            <button class='container__option'>12x3asd</button>
+        </div>
+</div>
+
+   <script src='./index.js'></script>
+</body>

@@ -1,0 +1,54 @@
+﻿<!DOCTYPE html>
+<html lang='ru'>
+<head>
+    <meta charset='UTF-8'>
+    <meta name='viewport'content='width=device-width, initial-scale=1.0'>
+    <title>Admin-panel</title>
+    <link href='https://fonts.googleapis.com/css?family=Roboto&display=swap'rel='stylesheet'>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel='stylesheet'href='style.css'>
+<body>
+    <div class="popup" id="popup">
+        alert
+    </div>
+    <form action='add.php' onsubmit = "return hundleClick() ;" class='admin-form' method="POST">
+        <div class='admin-form__wrapper'>
+            <input type='text' name='username' id='username'class='admin-form__input' min=4 required>
+            <label class="inner-text">Username</label>
+        </div>
+        <div class='admin-form__wrapper'>
+            <input type='password' name='password' id='password'class='admin-form__input' minlength="6" required>
+            <label class="inner-text">Password</label>
+        </div>
+        <div class='admin-form__wrapper'>
+            <input type='password'id='passwordRepeat'class='admin-form__input' minlength="6" required>
+            <label class="inner-text">Password repeat</label>
+        </div>
+        <button type='submit' class='admin-form__button'> 
+            User Add
+            <i class='material-icons icon'>person_add</i>
+        </button>
+    </form>
+    <script>
+        // Обработчик формы
+        const hundleClick = () =>{
+            const popup = document.getElementById('popup');
+            const username = document.getElementById('username'); 
+            const password = document.getElementById('password'); 
+            const passwordRepeat = document.getElementById('passwordRepeat'); 
+            if(password.value===passwordRepeat.value){
+                return true 
+            }
+            else{
+                popup.style.display = 'flex';
+                popup.textContent = 'Passwords aren\'t equal';
+                setTimeout(() => {
+                    popup.style.display = 'none';
+                }, 2000);
+             
+            }
+            return false
+        }
+    </script>
+</body>
+</html>

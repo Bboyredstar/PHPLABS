@@ -1,0 +1,40 @@
+﻿<!DOCTYPE html>
+<html lang='EN'>
+<head>
+    <meta charset='UTF-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <title>AUTH</title>
+    <link href='https://fonts.googleapis.com/css?family=Roboto&display=swap'rel='stylesheet'>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <form action='verify.php' onsubmit = "return hundleClick() ;" class='admin-form' method="POST">
+        <div class='admin-form__wrapper'>
+            <input type='text' name='username' id='username'class='admin-form__input' min=4 required>
+            <label class="inner-text">Username</label>
+        </div>
+        <div class='admin-form__wrapper'>
+            <input type='password' name='password' id='password'class='admin-form__input' minlength="6" required>
+            <label class="inner-text">Password</label>
+        </div>
+        <button type='submit' class='admin-form__button'> 
+            Login
+            <i class='material-icons icon'>perm_identity</i>
+        </button>
+    </form>
+    <script>
+        const hundleClick = () => {
+            const name = document.getElementById('username');
+            const password = document.getElementById('password');
+            if (name && password){
+                return
+            }
+            else {
+                alert('Fields can\'t be empty')
+            }
+            return false;
+        }
+    </script>
+</body>
+</html>
